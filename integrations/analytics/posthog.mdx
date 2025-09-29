@@ -2,23 +2,23 @@
 title: "PostHog"
 ---
 
-Add the following to your `mint.json` file to send analytics to PostHog.
+Add the following to your `docs.json` file to send analytics to PostHog.
 
 You only need to include `apiHost` if you are self-hosting PostHog. We send events to `https://app.posthog.com` by default.
 
 <CodeGroup>
 
-```json Analytics options in mint.json
-"analytics": {
+```json Analytics options in docs.json
+"integrations": {
     "posthog": {
-        "apiKey": "required",
+        "apiKey": "YOUR_POSTHOG_PROJECT_API_KEY",
         "apiHost": "optional"
     }
 }
 ```
 
 ```json Example
-"analytics": {
+"integrations": {
     "posthog": {
         "apiKey": "phc_TXdpocbYTeZVm5VJmMzHTMrCofBQu3e0kN7HGMNGTVW"
     }

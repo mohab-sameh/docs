@@ -1,40 +1,32 @@
 ---
-title: 'Reusable Snippets'
+title: 'Reusable snippets'
 description: 'Reusable, custom snippets to keep content in sync'
 icon: 'recycle'
 ---
 
 One of the core principles of software development is DRY (Don't Repeat
-Yourself). This is a principle that applies to documentation as
+Yourself), which applies to documentation as
 well. If you find yourself repeating the same content in multiple places, you
-should consider creating a custom snippet to keep your content in sync.
+should create a custom snippet to keep your content in sync.
 
 ## Creating a custom snippet
 
-**Pre-condition**: You must create your snippet file in the `snippets` directory.
+**Pre-condition**: You must create your snippet file in the `snippets` directory in order for the import to work.
 
-<Note>
   Any page in the `snippets` directory will be treated as a snippet and will not
   be rendered into a standalone page. If you want to create a standalone page
   from the snippet, import the snippet into another file and call it as a
   component.
-</Note>
+
 
 ### Default export
 
-1. Add content to your snippet file that you want to re-use across multiple
-   locations. Optionally, you can add variables that can be filled in via props
-   when you import the snippet.
+1. Add content to your snippet file that you want to re-use. Optionally, you can add variables that can be filled in via props
+   when you import the snippet. In this example, our variable is word.
 
 ```typescript snippets/my-snippet.mdx
-Hello world! This is my content I want to reuse across pages. My keyword of the
-day is {word}.
+Hello world! This is my content I want to reuse across pages. 
 ```
-
-<Warning>
-  The content that you want to reuse must be inside the `snippets` directory in
-  order for the import to work.
-</Warning>
 
 2. Import the snippet into your destination file.
 
@@ -50,7 +42,35 @@ import MySnippet from '/snippets/path/to/my-snippet.mdx';
 
 Lorem impsum dolor sit amet.
 
+<MySnippet/>
+
+```
+
+### Exporting with variables
+
+1. Optionally, you can add variables that can be filled in via props when you import the snippet. In this example, our variable is word.
+
+```typescript snippets/my-snippet.mdx
+My keyword of the day is {word}.
+```
+
+
+2. Import the snippet into your destination file with the variable. The property will fill in based on your specification.
+
+```typescript destination-file.mdx
+---
+title: My title
+description: My Description
+---
+
+import MySnippet from '/snippets/path/to/my-snippet.mdx';
+
+## Header
+
+Lorem impsum dolor sit amet.
+
 <MySnippet word="bananas" />
+
 ```
 
 ### Reusable variables
@@ -76,26 +96,25 @@ import { myName, myObject } from '/snippets/path/to/custom-variables.mdx';
 Hello, my name is {myName} and I like {myObject.fruit}.
 ```
 
-### Reusable components
+### JSX snippets
 
-1. Inside your snippet file, create a component that takes in props by exporting
-   your component in the form of an arrow function.
+1. Export a JSX component from your snippet file. (See [React components](/react-components) for more information):
 
-```typescript snippets/custom-component.mdx
-export const MyComponent = ({ title }) => (
-  <div>
-    <h1>{title}</h1>
-    <p>... snippet content ...</p>
-  </div>
-);
+```js icon=square-js snippets/my-jsx-snippet.jsx
+export const MyJSXSnippet = () => {
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+    </div>
+  )
+}
 ```
 
-<Warning>
-  MDX does not compile inside the body of an arrow function. Stick to HTML
-  syntax when you can or use a default export if you need to use MDX.
-</Warning>
+<Note>
+  Important: When creating JSX snippets, use arrow function syntax (`=>`) rather than function declarations. The `function` keyword is not supported in this context.
+</Note>
 
-2. Import the snippet into your destination file and pass in the props
+2. Import the snippet from your destination file and use the component:
 
 ```typescript destination-file.mdx
 ---
@@ -103,33 +122,7 @@ title: My title
 description: My Description
 ---
 
-import { MyComponent } from '/snippets/custom-component.mdx';
+import { MyJSXSnippet } from '/snippets/my-jsx-snippet.jsx';
 
-Lorem ipsum dolor sit amet.
-
-<MyComponent title={'Custom title'} />
-```
-
-### Client-Side Content
-
-By default, Mintlify employs server-side rendering, generating content
-at build time. For client-side content loading, ensure to verify the
-`document` object's availability before initiating the rendering process.
-
-```typescript snippets/client-component.mdx
-{/* `setTimeout` simulates a React.useEffect, which is called after the component is mounted. */}
-export const ClientComponent = () => {
-  if (typeof document === "undefined") {
-    return null;
-  } else {
-    setTimeout(() => {
-      const clientComponent = document.getElementById("client-component");
-      if (clientComponent) {
-        clientComponent.innerHTML = "Hello, client-side component!";
-      }
-    }, 1);
-
-    return <div id="client-component"></div>
-  }
-}
+<MyJSXSnippet />
 ```

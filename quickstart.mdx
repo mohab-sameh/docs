@@ -1,170 +1,251 @@
 ---
 title: "Quickstart"
-description: "Start building modern documentation in under five minutes"
+description: "Deploy your documentation in minutes"
 icon: "rocket"
 ---
 
+This quickstart guide shows you how to set up and deploy your documentation site in minutes.
+
+After completing this guide, you will have a live documentation site ready to customize and expand.
+
+<Info>
+
+**Prerequisites**: Before you begin, [create an account](https://mintlify.com/start) and complete onboarding.
+
+</Info>
+
+## Getting started
+
+After you complete the onboarding process, your documentation site automatically deploys to a unique URL with this format:
+
+```
+https://<your-project-name>.mintlify.app
+```
+
+Find your URL on the Overview page of your [dashboard](https://dashboard.mintlify.com/).
+
 <Frame>
-  <img
-    className="block dark:hidden"
-    src="https://mintlify-assets.b-cdn.net/hero-light.png"
-  />
-  <img
-    className="hidden dark:block"
-    src="https://mintlify-assets.b-cdn.net/hero-dark.png"
-  />
+  <img src="/images/quickstart/mintlify-domain-light.png" alt="Mintlify Domain" className="block dark:hidden" />
+  <img src="/images/quickstart/mintlify-domain-dark.png" alt="Mintlify Domain" className="hidden dark:block" />
 </Frame>
 
-## Getting Started
+Your site's URL is available immediately. Use this URL for testing and sharing with your team while you are setting up your docs site.
 
-Welcome to the Mintlify documentation guide. Follow the instructions below to learn how to deploy, update and supercharge your documentation with Mintlify.
+### Install the GitHub App
 
-### 1. Deploying Your Docs Repository
+Mintlify provides a GitHub App that automates deployment when you push changes to your repository.
 
-Mintlify docs are rendered from MDX files and configurations defined in our [starter template](https://github.com/mintlify/starter). We use Github to integrate your docs with your code, and make source control effortless.
+Install the GitHub App by following the instructions from the onboarding checklist or your dashboard.
+
+1. Navigate to **Settings** in your Mintlify dashboard.
+2. Select **GitHub App** from the sidebar.
+3. Select **Install GitHub App**. This opens a new tab to the GitHub App installation page.
+4. Select the organization or user account where you want to install the app.
+5. Select the repositories that you want to connect.
+
+<Frame>
+  <img src="/images/quickstart/github-app-installation-light.png" alt="GitHub App Installation" className="block dark:hidden" />
+  <img src="/images/quickstart/github-app-installation-dark.png" alt="GitHub App Installation" className="hidden dark:block" />
+</Frame>
+
+<Info>
+  Update the GitHub App permissions if you move your documentation to a different repository.
+</Info>
+
+### Authorize your GitHub account
+
+1. Navigate to **Settings** in your Mintlify dashboard.
+2. Select **My Profile** from the sidebar.
+3. Select **Authorize GitHub account**. This opens a new tab to the GitHub authorization page.
+
+<Info>
+  An admin for your GitHub organization may need to authorize your account depending on your organization settings.
+</Info>
+
+## Editing workflows
+
+Mintlify offers two workflows for creating and maintaining your documentation:
+
+<Card title="Code-based workflow" icon="terminal" horizontal href="#code-based-workflow">
+  For users who prefer working with existing tools in their local environment. Click to jump to this section.
+</Card>
+
+<Card title="Web editor workflow" icon="mouse-pointer-2" horizontal href="#web-editor-workflow">
+  For users who prefer a visual interface in their web browser. Click to jump to this section.
+</Card>
+
+## Code-based workflow
+
+The code-based workflow integrates with your existing development environment and Git repositories. This workflow is best for technical teams who want to manage documentation alongside code.
+
+### Install the CLI
+
+To work locally with your documentation, install the Command Line Interface (CLI), called [mint](https://www.npmjs.com/package/mint), by running this command in your terminal:
+
+<CodeGroup>
+  ```bash npm
+  npm i -g mint
+  ```
+
+  ```bash pnpm
+  pnpm add -g mint
+  ```
+</CodeGroup>
+
+<Info>
+  You need Node.js installed on your machine. If you encounter installation issues, check the troubleshooting guide.
+</Info>
+
+### Edit the documentation
+
+After setting up your environment, you can start editing your documentation files. For example, update the title of the introduction page:
+
+1. Open your repository created during onboarding.
+2. Open `index.mdx` and locate the top of the file:
+
+```mdx index.mdx
+---
+title: "Introduction"
+description: "This is the introduction to the documentation"
+---
+```
+
+3. Update the `title` field to `"Hello World"`.
+
+```mdx index.mdx {2}
+---
+title: "Hello World"
+description: "This is the introduction to the documentation"
+---
+```
+
+### Preview the changes
+
+To preview the changes locally, run the following command:
+
+```bash
+mint dev
+```
+
+Your preview will be available at `localhost:3000`.
+
+<Frame>
+  <img src="/images/quickstart/mintlify-dev-light.png" alt="Mintlify Dev" className="block dark:hidden" />
+  <img src="/images/quickstart/mintlify-dev-dark.png" alt="Mintlify Dev" className="hidden dark:block" />
+</Frame>
+
+### Push the changes
+
+When you are ready to publish your changes, push them to your repository.
+
+Mintlify automatically detects the changes, builds your documentation, and deploys the updates to your site. Monitor the deployment status in your GitHub repository commit history or the [dashboard](https://dashboard.mintlify.com).
+
+After the deployment completes, your latest update will be available at `<your-project-name>.mintlify.app`.
+
+<Card title="Jump to adding a custom domain" icon="arrow-down" href="#adding-a-custom-domain" horizontal>
+  Optionally, skip the web editor workflow and jump to adding a custom domain.
+</Card>
+
+## Web editor workflow
+
+The web editor workflow provides a what-you-see-is-what-you-get (WYSIWYG) interface for creating and editing documentation. This workflow is best for people who want to work in their web browser without additional local development tools.
+
+### Access the web editor
+
+1. Log in to your [dashboard](https://dashboard.mintlify.com).
+2. Select **Editor** on the left sidebar.
+
+<Info>
+  If you have not installed the GitHub App, you will be prompted to install the app when you open the web editor.
+</Info>
+
+<Frame>
+  <img alt="The Mintlify web editor in the visual editor mode" src="/images/quickstart/web-editor-light.png" className="block dark:hidden" />
+  <img alt="The Mintlify web editor in the visual editor mode" src="/images/quickstart/web-editor-dark.png" className="hidden dark:block" />
+</Frame>
+
+### Edit the documentation
+
+In the web editor, you can navigate through your documentation files in the sidebar. Let's update the introduction page:
+
+Find and select `index.mdx` in the file explorer.
+
+Then, in the editor, update the title field to "Hello World".
+
+<Frame>
+  <img alt="Editing in Web Editor" src="/images/quickstart/web-editor-editing-light.png" className="block dark:hidden" />
+  <img alt="Editing in Web Editor" src="/images/quickstart/web-editor-editing-dark.png" className="hidden dark:block" />
+</Frame>
+
+<Tip>
+  The editor provides a rich set of formatting tools and components. Type <kbd>/</kbd> in the editor to open the command menu and access these tools.
+</Tip>
+
+### Publish your changes
+
+When you're satisfied with your edits, select the **Publish** button in the top-right corner. Your changes are immediately deployed to your documentation site.
+
+<Tip>
+  Use branches to preview and review changes through pull requests before deploying to your live site.
+</Tip>
+
+For more details about using the web editor, including using branches and pull requests to collaborate and preview changes, see our [web editor documentation](/editor/getting-started).
+
+## Adding a custom domain
+
+While your `<your-project-name>.mintlify.app` subdomain works well for testing and development, most teams prefer using a custom domain for production documentation.
+
+To add a custom domain, navigate to the [Domain Setup](https://dashboard.mintlify.com/settings/deployment/custom-domain) page in your dashboard.
+
+<Frame>
+  <img src="/images/quickstart/custom-domain-light.png" alt="Custom Domain" className="block dark:hidden" />
+  <img src="/images/quickstart/custom-domain-dark.png" alt="Custom Domain" className="hidden dark:block" />
+</Frame>
+
+Enter your domain (for example, `docs.yourcompany.com`) and follow the provided instructions to configure DNS settings with your domain provider.
+
+<Table>
+| Record Type | Name | Value | TTL |
+|-------------|------|-------|-----|
+| CNAME | docs (or subdomain) | cname.mintlify.app | 3600 |
+</Table>
+
+<Info>
+  DNS changes can take up to 48 hours to propagate, though changes often complete much sooner.
+</Info>
+
+## Next steps
+
+Congratulations! You have successfully deployed your documentation site with Mintlify. Here are suggested next steps to enhance your documentation:
+
+<Card title="Configure your global settings" icon="settings" href="settings" horizontal>
+  Configure site-wide styling, navigation, integrations, and more with the `docs.json` file.
+</Card>
+<Card title="Customize your theme" icon="paintbrush" href="themes" horizontal>
+  Learn how to customize colors, fonts, and the overall appearance of your documentation site.
+</Card>
+<Card title="Organize navigation" icon="map" href="navigation" horizontal>
+  Structure your documentation with intuitive navigation to help users find what they need.
+</Card>
+<Card title="Add interactive components" icon="puzzle" href="/components/accordions" horizontal>
+  Enhance your documentation with interactive components like accordions, tabs, and code samples.
+</Card>
+<Card title="Set up API references" icon="code" href="/api-playground/overview" horizontal>
+  Create interactive API references with OpenAPI and AsyncAPI specifications.
+</Card>
+
+## Troubleshooting
+
+If you encounter issues during the setup process, check these common troubleshooting solutions:
 
 <AccordionGroup>
-  <Accordion icon="github" title="Creating Your Documentation Repository">
-
-    If you've created a docs repo in our onboarding, this step is complete. You can find your docs repository on your Mintlify [dashboard](https://dashboard.mintlify.com).
-
-    To create your docs repo without logging into Github, follow these instructions:
-    1. Clone our [starter template](https://github.com/mintlify/starter) into a new public repo. You can make the repo private later.
-    2. [Get in touch](mailto:support@mintlify.com) with our team to deploy your repo.
-
-    ![Starter Template](https://mintlify.s3-us-west-1.amazonaws.com/mintlify/images/starter-template.png)
-
+  <Accordion title="Local preview not working">
+    Make sure you have Node.js v19+ installed and that you run the `mint dev` command from the directory containing your `docs.json` file.
   </Accordion>
-
-  <Accordion icon="message-bot" title="Installing Our Github App">
-  
-    The next step is to install our Github app. This ensures that your updates are automatically deployed when you push changes. You can find the installation link in the [dashboard](https://dashboard.mintlify.com/settings), on the Settings page. Upon successful installation, a check mark will appear next to the commit hash of the repository.
-
-    ![Github Bot Verification](https://mintlify.s3-us-west-1.amazonaws.com/mintlify/images/github-bot-verification.png)
-
+  <Accordion title="Changes not reflecting on live site">
+    Deployment can take upwards to a few minutes. Check your GitHub Actions (for code-based workflow) or deployment logs in the Mintlify dashboard to ensure there are no build errors.
   </Accordion>
-
-</AccordionGroup>
-
-### 2. Updating Your Docs
-
-Mintlify enables you to easily customize the style, structure, and content of your docs.
-
-<Note>
-  We provide a white-glove migration service as part of our Enterprise plan.
-  Interested? Request it [here](mailto:sales@mintlify.com)
-</Note>
-
-<AccordionGroup>
-  <Accordion icon="rectangle-terminal" title="Setting up Your Editing Environment">
-  
-    **Edit Locally (Recommended for Developers):**
-
-    1. Install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-    2. Once git is installed, clone your docs repository using `git clone <your-repo>`. If you haven't set it up yet, now would be a good time to do so with these [SSH keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
-    3. Use your favorite IDE to open the repository.
-    4. Install our Mintlify CLI to preview changes with `npm i -g mintlify`. Learn more about this in our [development guide](/development).
-
-    **Editing Online:**
-
-    Here are two ways to edit your repository online:
-
-    * To edit a single file, locate and click the edit button. This will open a web editor right on Github.
-      ![Edit Online](https://mintlify.s3-us-west-1.amazonaws.com/mintlify/images/edit-online.png)
-    * For a more versatile online experience, open your git repository in Github's [github.dev](https://github.dev) online IDE. Simply replace `github.com` in your repo URL with `github.dev`. For example, use `github.dev/mintlify/docs` instead of `github.com/mintlify/docs`.
-
-  </Accordion>
-
-  <Accordion icon="palette" title="Customizing Your Brand (mint.json)">
-  
-    Easily customize colors, logos and buttons among other configurations in our `mint.json` file. Start with these basic configurations:
-
-    ```json
-    "name": "Your Company"
-    "logo": {
-      "light": "/logo/light.svg",
-      "dark": "/logo/dark.svg",
-      "href": "https://yourcompany.com"
-    },
-    "favicon": "/favicon.svg",
-    "colors": {
-      "primary": "#2AB673",
-      "light": "#55D799",
-      "dark": "#117866",
-    },
-    ```
-
-    A full list of supported configurations can be found [here](/settings/global).
-
-  </Accordion>
-
-  <Accordion icon="pencil" title="Adding Content">
-
-    Add content with simple MDX files. Initiate your pages with this template:
-
-    ```md
-    ---
-    title: "Page Title"
-    sidebarTitle: "Sidebar title (optional - if different from page title)"
-    description: "Subtitle (optional)"
-    ---
-    ```
-
-    Learn more about adding images, tables, lists, and more using the [MDX syntax](/text). We also offer a wide array of components which are listed [here](/content/components).
-
-  </Accordion>
-
-  <Accordion icon="rocket" title="Pushing Your Changes">
-
-    Once ready, commit and push your changes to update your docs site. Here is a [guide](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push) on how to do that. If the Github app is unable to successfully deploy your changes, you can manually update your docs through our [dashboard](https://dashboard.mintlify.com).
-
-    ![Manual Update](https://mintlify.s3-us-west-1.amazonaws.com/mintlify/images/manual-update.png)
-
+  <Accordion title="Custom domain not connecting">
+    Verify that your DNS records are set up correctly and allow sufficient time for DNS propagation (up to 48 hours). You can use tools like [DNSChecker](https://dnschecker.org) to verify your CNAME record.
   </Accordion>
 </AccordionGroup>
-
-### 3. Supercharging Your Docs
-
-Mintlify supports an array of advanced features like API reference docs, analytics, and versioning to accommodate any of your documentation needs.
-
-<AccordionGroup>
-  <Accordion icon="code-branch" title="Generating API References">
-
-    You can easily set up your API references using an OpenAPI document.
-
-    1. Add your `openapi.yaml` or `openapi.json` file into your docs repository or define the `openapi` field in `mint.json` with a URL.
-
-    ```json
-    "openapi": "link-to-your-openapi-file"
-    ```
-
-    2. Use our [scraper](/api-playground/openapi/setup#autogenerate-files-recommended) to autogenerate your OpenAPI endpoints files as:
-
-    ```bash
-    npx @mintlify/scraping@latest openapi-file <path-or-url-to-openapi-file>
-    ```
-
-    3. Finally, include the generated endpoint MDX files to your `mint.json` under `navigation`.
-
-    For a complete guide on using Mintlify with OpenAPI, check out [this guide](/api-playground/openapi/setup). [This guide](/api-playground/openapi/writing-openapi) explains how to configure your API authentication methods. For manual API references definition, explore [our syntax](/api-playground/overview).
-
-  </Accordion>
-
-  <Accordion icon="star" title="Adding a Custom Domain">
-
-    Integrate your docs into your website by hosting them on a custom domain. This is included even in the free Mintlify plan. Navigate to your [dashboard settings](https://www.dashboard.mintlify.com/settings) to add a custom domain.
-
-    ![Custom Domain](/images/custom-domain.png)
-
-  </Accordion>
-
-  <Accordion icon="chart-simple" title="Adding Analytics">
-
-    Our in-house analytics give you insights into page views, search analytics, session recordings and more. Access these on your [dashboard](https://dashboard.mintlify.com/analytics). We also support integrations with a range of analytics providers. You can find the list of providers [here](/integrations/analytics/overview).
-
-  </Accordion>
-</AccordionGroup>
-
-### All Done!
-
-Congrats! You've set up your Mintlify Docs and it's looking amazing! Need support or want to give some feedback? You can join our [community](https://mintlify.com/community) or drop us an email at [support@mintlify.com](mailto:support@mintlify.com).
